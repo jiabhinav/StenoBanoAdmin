@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="70dp"
+    android:padding="2dp"
+    android:background="@android:color/transparent"
+    android:layout_height="70dp">
+
+        <com.stenobano.admin.other_class.RoundRectCornerImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/blue_gradient"
+            android:id="@+id/image"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="-2dp"
+            android:layout_marginTop="-2dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_remove_circle_black_24dp"
+            android:id="@+id/remove"
+            app:tint="@color/gray" />
+
+</androidx.cardview.widget.CardView>

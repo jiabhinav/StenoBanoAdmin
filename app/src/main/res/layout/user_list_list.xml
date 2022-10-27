@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="user"
+            type="com.stenobano.admin.model.SerchUserListModel.Result" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F4F4"
+        android:layout_marginBottom="2sp"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textSize="10dp"
+            android:padding="4dp"
+            android:text="@{user.createdAt}" />
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:ems="5"
+            android:layout_below="@+id/date"
+            android:text="dedeee"
+            android:textColor="#000000"/>
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/date"
+            android:layout_toRightOf="@+id/id"
+            android:ems="6"
+            android:text="@{user.name}" />
+        <TextView
+            android:id="@+id/mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/date"
+            android:layout_toRightOf="@+id/name"
+            android:maxLength="12"
+            android:text="@{user.mobile}" />
+        <ImageView
+            android:id="@+id/view"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_below="@+id/date"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/delete"
+            android:src="@drawable/ic_baseline_edit_24" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_below="@+id/date"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_baseline_delete_24" />
+    </RelativeLayout>
+</layout>

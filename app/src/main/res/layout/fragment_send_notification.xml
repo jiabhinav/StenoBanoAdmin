@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.SendNotificationFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:textColorHint="#9C9999"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:textColor="#9C9999"
+                android:backgroundTint="#9C9999"
+                android:hint="Title"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:textColor="#9C9999"
+                android:backgroundTint="#9C9999"
+                android:hint="Type Message"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:layout_marginTop="50dp"
+            android:textSize="16dp"
+            android:id="@+id/btn_notification"
+            android:text="Send Notification"/>
+
+        <Button
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:layout_marginTop="50dp"
+            android:textSize="15dp"
+            android:visibility="visible"
+            android:id="@+id/delete_notification"
+            android:text="Delete All Notification"/>
+    </LinearLayout>
+
+
+</FrameLayout>
+</layout>

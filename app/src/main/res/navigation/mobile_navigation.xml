@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.stenobano.admin.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/nav_upload_audio"
+        android:name="com.stenobano.admin.ui.UploadImageAudio"
+        android:label="Upload Audio/Image"
+        tools:layout="@layout/fragment_upload_image_audio" />
+    <fragment
+        android:id="@+id/nav_adddictionary"
+        android:name="com.stenobano.admin.ui.AddDictionaryFragment"
+        android:label="Add Dictionary"
+        tools:layout="@layout/fragment_add_dictionary" />
+    <fragment
+        android:id="@+id/nav_editdictionary"
+        android:name="com.stenobano.admin.ui.EditDictionaryFragment"
+        android:label="Add Dictionary"
+        tools:layout="@layout/fragment_edit_dictionary" />
+    <fragment
+        android:id="@+id/nav_addcategory"
+        android:name="com.stenobano.admin.ui.AddCategory"
+        android:label="Upload Audio/Image"
+        tools:layout="@layout/fragment_add_category" />
+
+    <fragment
+        android:id="@+id/nav_view_category"
+        android:name="com.stenobano.admin.ui.AddCategory"
+        android:label="Category"
+        tools:layout="@layout/fragment_view_category" />
+
+    <fragment
+        android:id="@+id/nav_uploaded_file"
+        android:name="com.stenobano.admin.ui.ViewCategory"
+        android:label="Uploaded File"
+        tools:layout="@layout/fragment_view_category" />
+
+    <fragment
+        android:id="@+id/nav_user_list"
+        android:name="com.stenobano.admin.ui.UsersListFragment"
+        android:label="User List"
+        tools:layout="@layout/fragment_users_list" >
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/user_detail"
+        android:name="com.stenobano.admin.fragment.User_View_DetailsFragment"
+        android:label="User Details st"
+        tools:layout="@layout/fragment_user__view__details">
+
+    </fragment>
+    <fragment
+        android:id="@+id/user_edit"
+        android:name="com.stenobano.admin.fragment.UpdateEdit_UserFragment"
+        android:label="User Details st"
+        tools:layout="@layout/fragment_update_edit__user">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/news_details"
+        android:name="com.stenobano.admin.ui.NewsFragment"
+        android:label="News Details"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_inbox"
+        android:name="com.stenobano.admin.chat.Inbox_F"
+        android:label="Inbox"
+        tools:layout="@layout/fragment_inbox" />
+
+    <fragment
+        android:id="@+id/nav_chat_fragment"
+        android:name="com.stenobano.admin.chat.GroupChat_Fragmnet"
+        android:label="Chat"
+        tools:layout="@layout/fragment_group_chat__fragmnet"/>
+
+    <fragment
+        android:id="@+id/purchae_amount"
+        android:name="com.stenobano.admin.ui.PurchaseAmountFragment"
+        android:label="Purchase Amount"
+        tools:layout="@layout/fragment_purchase_amount" />
+    <fragment
+        android:id="@+id/send_notification"
+        android:name="com.stenobano.admin.ui.SendNotificationFragment"
+        android:label="Send Notification"
+        tools:layout="@layout/fragment_send_notification" />
+
+    <fragment
+        android:id="@+id/user_request"
+        android:name="com.stenobano.admin.ui.UserRequestFragment"
+        android:label="User's Request"
+        tools:layout="@layout/fragment_user_request" />
+
+    <fragment
+        android:id="@+id/view_notification"
+        android:name="com.stenobano.admin.ui.ViewNotificationFragment"
+        android:label="View Notification"
+        tools:layout="@layout/fragment_view_notification" />
+    <fragment
+        android:id="@+id/delete_notification"
+        android:name="com.stenobano.admin.ui.DeleteNotificationFragment"
+        android:label="Delete Notification"
+        tools:layout="@layout/fragment_delete_notification" />
+    <fragment
+        android:id="@+id/reset_PinFragment"
+        android:name="com.stenobano.admin.ui.ResetPinFragment"
+        android:label="Change Pin"
+        tools:layout="@layout/fragment_reset_pin" />
+
+    <fragment
+        android:id="@+id/add_ads"
+        android:name="com.stenobano.admin.ui.AddAds"
+        android:label="Change Pin"
+        tools:layout="@layout/fragment_add_ads" />
+
+    <fragment
+        android:id="@+id/adslist"
+        android:name="com.stenobano.admin.ui.AdsList"
+        android:label="Ads List"
+        tools:layout="@layout/fragment_ads_list" />
+
+
+    <fragment
+        android:id="@+id/logout_Fragment"
+        android:name="com.stenobano.admin.ui.LogoutFragment"
+        android:label="Change Pin"
+        tools:layout="@layout/fragment_logout" />
+
+
+
+</navigation>

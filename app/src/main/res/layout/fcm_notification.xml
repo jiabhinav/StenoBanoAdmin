@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="chat"
+            type="com.stenobano.admin.model.Chat" />
+    </data>
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:cardCornerRadius="6dp"
+        android:id="@+id/cardView"
+
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:id="@+id/date"
+                android:textSize="12dp"
+                android:layout_alignParentRight="true"
+                android:text="2312314"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_notifications_24"
+                android:textColor="@color/black"
+                android:drawableTint="@color/red"
+                android:id="@+id/subject"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:drawablePadding="2dp"
+                android:layout_below="@+id/date"
+                android:text="English"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:id="@+id/title"
+                android:textSize="14dp"
+                android:layout_marginLeft="24dp"
+                android:drawablePadding="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/subject"
+                android:text=""/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgray"
+                android:id="@+id/teacher"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:drawablePadding="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/title"
+                android:text="English"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

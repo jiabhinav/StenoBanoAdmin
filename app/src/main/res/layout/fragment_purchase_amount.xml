@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.PurchaseAmountFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/textview_border"
+            android:text="Select Plan"
+            android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+            android:textColorHint="@color/gray"
+            android:id="@+id/plan"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:visibility="visible"
+            android:paddingLeft="10dp"
+            android:textColor="#9C9999"
+            android:inputType="numberDecimal"
+            />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/valid"
+                android:textColor="#9C9999"
+                android:backgroundTint="#9C9999"
+                android:inputType="number"
+                android:textSize="16sp"
+                android:hint="Enter days  like 365 days "/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/amount"
+                android:textSize="16sp"
+                android:textColor="#9C9999"
+                android:backgroundTint="#9C9999"
+                android:inputType="numberDecimal"
+                android:hint=" Purchase Amount"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textColor="#ffffff"
+            android:text="Update"
+            android:textSize="18dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/save"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Plan"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:id="@+id/text_plan"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Valid Days"
+                android:gravity="center"
+                android:layout_weight=".5"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:id="@+id/text_days"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Amount"
+                android:padding="8dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:id="@+id/text_amount"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linear">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+</layout>

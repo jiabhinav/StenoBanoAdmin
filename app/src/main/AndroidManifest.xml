@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.stenobano.admin">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup,android:usesCleartextTraffic">
+
+        <activity android:name=".activity.EditAds"
+            android:exported="false"/>
+
+        <activity android:name=".activity.SplashActivity"
+            android:exported="false"/>
+
+        <activity android:name=".MainActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.GetDataNew"
+            android:exported="false"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".other_class.CameraActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.Transparent"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.stenobano.admin.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

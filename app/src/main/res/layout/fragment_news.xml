@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".ui.NewsFragment">
+    <LinearLayout
+        android:layout_margin="30sp"
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Messages"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:padding="5sp"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:id="@+id/message"
+                android:layout_weight="1"
+                android:background="@drawable/textview_border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <CheckBox
+            android:layout_marginTop="20sp"
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#8F8E8E"
+            android:buttonTint="#1A99C4"
+            android:checked="false"
+            android:text=" @string/check_String" />
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_Url"
+            android:layout_marginTop="15sp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="URL"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/url"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:gravity="center"
+android:padding="5sp"
+                android:background="@drawable/textview_border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <RadioGroup
+            android:layout_marginTop="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/active"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:buttonTint="#1A99C4"
+                android:layout_marginLeft="16dp"
+                android:text="Active"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:id="@+id/deactive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:buttonTint="#1A99C4"
+                android:layout_weight="1"
+                android:text="Deactive" />
+        </RadioGroup>
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:visibility="gone"
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/updateButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="UPDATE"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:textSize="14dp"
+                android:layout_margin="10sp"
+                android:textStyle="normal"/>
+            <TextView
+                android:id="@+id/deleteButtton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="DELETE"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"
+                android:layout_margin="10sp"
+                android:textSize="14dp"
+                android:textStyle="normal"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/addbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp"
+        android:padding="6dp"
+        android:text="ADD"
+        android:foreground="?android:selectableItemBackground"
+        android:focusable="true"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textSize="14dp"
+        android:layout_margin="10sp"
+        android:textStyle="normal"/>
+
+
+</LinearLayout>
+</layout>

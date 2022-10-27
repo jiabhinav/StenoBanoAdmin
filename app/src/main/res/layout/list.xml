@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="word"
+            type="com.stenobano.admin.model.GetSearchWord.Result" />
+
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip">
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:adjustViewBounds="true"
+            android:layout_marginRight="5dp"
+            />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/image"
+            android:text="Rihanna Love the way lie"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_toRightOf="@+id/image"
+            android:layout_marginTop="2dp"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update"
+            android:text="Update"
+            android:padding="3dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/delete"
+            android:textColor="#343434"
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:id="@+id/delete"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="2pt"
+            android:text="Delete"
+            android:textColor="#ab0707">
+
+        </TextView>
+    </RelativeLayout>
+</layout>

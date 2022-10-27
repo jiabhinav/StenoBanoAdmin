@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".ui.ResetPinFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/white_rect"
+                android:orientation="vertical"
+                android:paddingBottom="30sp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:text="Change Pin "
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:layout_marginTop="30sp"
+                    android:theme="@style/MyEditTextTheme"
+                    android:id="@+id/oldPin"
+                    android:textSize="14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_bg_with_icon"
+                    android:drawableStart="@drawable/ic_baseline_login_24"
+                    android:drawablePadding="30dp"
+                    android:hint=" Old Pin "
+                    android:maxLength="10"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/new_Pin"
+                    android:layout_marginTop="30sp"
+                    android:theme="@style/MyEditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_bg_with_icon"
+                    android:textSize="14sp"
+                    android:drawableStart="@drawable/ic_baseline_login_24"
+                    android:drawablePadding="30dp"
+                    android:hint=" New  Pin"
+                    android:maxLength="10"
+                    android:padding="10dp" />
+
+                <EditText
+                    android:id="@+id/cnfrmpin"
+                    android:layout_marginTop="30sp"
+                    android:theme="@style/MyEditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_bg_with_icon"
+                    android:textSize="14sp"
+                    android:drawableStart="@drawable/ic_baseline_login_24"
+                    android:drawablePadding="30dp"
+                    android:hint=" Confirm  Pin"
+                    android:maxLength="10"
+                    android:padding="10dp" />
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_marginTop="30sp"
+                    android:theme="@style/MyEditTextTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_bg_with_icon"
+                    android:textSize="14sp"
+                    android:drawableStart="@drawable/ic_baseline_login_24"
+                    android:drawablePadding="30dp"
+                    android:hint=" Password"
+                    android:maxLength="10"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="7dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_corner" />
+
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/btnSubmit"
+        android:layout_width="100sp"
+        android:layout_height="46sp"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16.7dp"
+        android:background="@drawable/half_blue_button"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Submit"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>

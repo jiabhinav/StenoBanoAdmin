@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.UserSearchFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/cancel"
+                        android:drawableLeft="@drawable/ic_search_black_24dp"
+                        android:hint="Serach..."
+                        android:imeOptions="actionGo"
+                        android:singleLine="true" />
+
+                    <ImageView
+                        android:id="@+id/cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10pt"
+                        android:src="@drawable/ic_baseline_cancel_24" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appbar">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5pt"
+                android:layout_marginTop="2pt"
+                android:layout_marginRight="5pt"
+                android:nestedScrollingEnabled="false">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20pt" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

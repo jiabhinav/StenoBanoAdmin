@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_addcategory"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="Add Category" />
+
+        <item
+            android:id="@+id/nav_upload_audio"
+            android:icon="@drawable/ic_baseline_cloud_upload_24"
+            android:title="Upload Audio/Image"/>
+
+        <item
+            android:id="@+id/nav_adddictionary"
+            android:icon="@drawable/ic_baseline_cloud_upload_24"
+            android:title="Add Dictionary"/>
+        <item
+            android:id="@+id/nav_editdictionary"
+            android:icon="@drawable/ic_baseline_cloud_upload_24"
+            android:title="Edit Dictionary"/>
+        <item
+            android:id="@+id/nav_view_category"
+            android:icon="@drawable/ic_baseline_add_circle_24"
+            android:title="View Category" />
+
+        <item
+            android:id="@+id/nav_uploaded_file"
+            android:icon="@drawable/ic_baseline_cloud_upload_24"
+            android:title="View Uploaded Audio" />
+
+        <item
+            android:id="@+id/nav_user_list"
+            android:icon="@drawable/ic_baseline_cloud_upload_24"
+            android:title="User List" />
+
+        <item
+            android:id="@+id/news_details"
+            android:icon="@drawable/ic_baseline_assignment_24"
+            android:title="News"/>
+        <item
+            android:id="@+id/purchae_amount"
+            android:icon="@drawable/ic_baseline_monetization"
+            android:title="Purchase Amount"/>
+        <item
+            android:id="@+id/send_notification"
+            android:icon="@drawable/ic_baseline_notification"
+            android:title="Send Notification"/>
+
+
+        <item
+            android:id="@+id/user_request"
+            android:icon="@drawable/ic_baseline_close_fullscreen_24"
+            android:title="User Request"/>
+        <item
+            android:id="@+id/view_notification"
+            android:icon="@drawable/ic_baseline_notifications"
+            android:title="View Notification"/>
+
+
+
+        <item
+            android:id="@+id/add_ads"
+            android:icon="@drawable/ic_add_circle_outline_black_24dp"
+            android:title="Add Ads"/>
+        <item
+            android:id="@+id/adslist"
+            android:icon="@drawable/ic_add_circle_outline_black_24dp"
+            android:title="List Ads"/>
+
+
+        <item
+            android:id="@+id/delete_notification"
+            android:icon="@drawable/ic_baseline_notifications_off"
+            android:title="Delete Notification"/>
+        <item
+            android:id="@+id/reset_PinFragment"
+            android:icon="@drawable/ic_baseline_notifications_off"
+            android:title="Change Pin "/>
+        <item
+            android:id="@+id/logout_Fragment"
+            android:icon="@drawable/ic_baseline_notifications_off"
+            android:title="Logout"/>
+
+
+    </group>
+</menu>

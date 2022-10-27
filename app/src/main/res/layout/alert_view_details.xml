@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.stenobano.admin.other_class.ZoomLinearLayout
+        android:id="@+id/zoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingClass">
+
+        <ImageView
+            android:id="@+id/alertimage"
+            android:layout_width="match_parent"
+            android:layout_height="100pt"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="10pt" />
+    </com.stenobano.admin.other_class.ZoomLinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/zoom"
+        android:layout_gravity="center_horizontal"
+        android:background="#ccd4d4"
+        android:padding="4pt"
+        android:text="Animal"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="8pt"
+        android:textStyle="bold" />
+
+</RelativeLayout>
