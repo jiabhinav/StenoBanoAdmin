@@ -64,8 +64,7 @@
                     android:id="@+id/chatlist"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/typeindicator">
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_above="@+id/typeindicator"></androidx.recyclerview.widget.RecyclerView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -110,29 +109,30 @@
                     android:layout_alignParentBottom="true">
 
                     <ImageButton
+                        android:id="@+id/uploadimagebtn"
                         android:layout_width="32dp"
                         android:layout_height="match_parent"
-                        android:id="@+id/uploadimagebtn"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
-                        android:scaleType="fitCenter"
+                        android:background="@color/transparent"
                         android:padding="4dp"
-                        android:src="@drawable/ic_image_icon"
-                        android:background="@color/transparent"/>
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_image_icon" />
 
                     <ImageButton
+                        android:id="@+id/mic_btn"
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
-                        android:id="@+id/mic_btn"
-                        android:scaleType="fitCenter"
-                        android:background="@color/transparent"
-                        android:src="@drawable/ic_mic_fill"
-                        android:paddingTop="3dp"
-                        android:paddingLeft="3dp"
-                        android:paddingBottom="3dp"
+                        android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/uploadimagebtn"
+                        android:background="@color/transparent"
+                        android:paddingLeft="3dp"
+                        android:paddingTop="3dp"
                         android:paddingRight="5dp"
-                        android:layout_centerVertical="true"/>
+                        android:paddingBottom="3dp"
+                        android:visibility="gone"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_mic_fill" />
 
 
                     <RelativeLayout
@@ -163,16 +163,17 @@
                             android:hint="Send Message Here..."/>
 
                         <ImageButton
+                            android:id="@+id/upload_gif_btn"
                             android:layout_width="28dp"
                             android:layout_height="28dp"
-                            android:id="@+id/upload_gif_btn"
+                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="5dp"
-                            android:scaleType="fitXY"
-                            android:layout_alignParentRight="true"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/ic_gif_image_gray"
-                            android:background="@color/transparent"/>
+                            android:background="@color/transparent"
+                            android:scaleType="fitXY"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_gif_image_gray" />
                     </RelativeLayout>
 
                     <ImageView

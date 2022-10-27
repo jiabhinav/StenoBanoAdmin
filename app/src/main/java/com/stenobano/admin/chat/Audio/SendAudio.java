@@ -180,11 +180,11 @@ public class SendAudio {
         final String formattedDate = GetData.df.format(c);
 
         StorageReference reference= FirebaseStorage.getInstance().getReference();
-        DatabaseReference dref=rootref.child("chat").child(school_id).child(senderid+"-"+Receiverid).push();
+        DatabaseReference dref=rootref.child("chat").child(senderid+"-"+Receiverid).push();
         final String key=dref.getKey();
         GroupChat_Fragmnet.uploading_Audio_id=key;
-        final String current_user_ref = "chat" +"/"+school_id+ "/" + senderid + "-" + Receiverid;
-        final String chat_user_ref = "chat" +"/"+school_id+ "/" + Receiverid + "-" + senderid;
+        final String current_user_ref = "chat" + "/" + senderid + "-" + Receiverid;
+        final String chat_user_ref = "chat" + "/" + Receiverid + "-" + senderid;
 
         HashMap my_dummi_pic_map = new HashMap<>();
         my_dummi_pic_map.put("receiver_id", Receiverid);
@@ -207,7 +207,7 @@ public class SendAudio {
         Log.d("mFileName",mFileName);
         Log.d("mFileName",key+".mp3");
 
-        final StorageReference filepath=reference.child("Audio").child(school_id).child(key+".mp3");
+        final StorageReference filepath=reference.child("Audio").child(key+".mp3");
 
         filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -238,8 +238,8 @@ public class SendAudio {
                         rootref.updateChildren(user_map, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                String inbox_sender_ref = "Inbox" +"/"+school_id+ "/" + senderid + "/" + Receiverid;
-                                String inbox_receiver_ref = "Inbox" +"/"+school_id+ "/" + Receiverid + "/" + senderid;
+                                String inbox_sender_ref = "Inbox" + "/" + senderid + "/" + Receiverid;
+                                String inbox_receiver_ref = "Inbox" + "/" + Receiverid + "/" + senderid;
 
                                 HashMap sendermap=new HashMap<>();
                                 sendermap.put("rid",senderid);
@@ -284,60 +284,6 @@ public class SendAudio {
 
 
 
-    private void uploadImage(Uri imageUri)
-    {
-      StorageReference storageReference= FirebaseStorage.getInstance().getReference("Audio").child(school_id);
-        if (imageUri!=null)
-        {
-            final StorageReference fileReference =storageReference.child(System.currentTimeMillis()+
-                    "."+"mp3");
-            Log.d("dddddwdw",fileReference.toString());
-            StorageTask uploadTask=fileReference.putFile(imageUri);
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful())
-                    {
-                        throw  task.getException();
-                    }
-                    return fileReference.getDownloadUrl();
-
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful())
-                    {
-                        Log.d("succresup0load",task.getResult().toString());
-                        Uri dowloadUri=task.getResult();
-                       /* String mUri=dowloadUri.toString();
-                        reference= FirebaseDatabase.getInstance().getReference("Users").child(sp.getString("phone",null));
-                        HashMap<String,Object>map=new HashMap<>();
-                        map.put("imageURL",mUri);
-                        reference.updateChildren(map);*/
-
-
-                    }
-                    else
-                    {
-                        Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
-        }
-        else
-        {
-            Toast.makeText(context, "No image selected!!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
 

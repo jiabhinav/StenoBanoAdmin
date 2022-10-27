@@ -129,7 +129,7 @@ public class Inbox_F extends Fragment implements View.OnClickListener {
     Query inbox_query;
     public void getData() {
         Log.d("useridddd",new SesssionManager(getActivity()).userID()+"="+school_id);
-        inbox_query=root_ref.child("Inbox").child(school_id).child(new SesssionManager(getActivity()).userMobile());
+        inbox_query=root_ref.child("Inbox").child(new SesssionManager(getActivity()).userMobile());
         inbox_query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

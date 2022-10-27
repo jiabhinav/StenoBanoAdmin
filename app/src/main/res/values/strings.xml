@@ -24,6 +24,7 @@
 
     <string-array name="plan">
         <item>Yearly</item>
+        <item>Half</item>
         <item>Trial</item>
     </string-array>
     <string-array name="status">

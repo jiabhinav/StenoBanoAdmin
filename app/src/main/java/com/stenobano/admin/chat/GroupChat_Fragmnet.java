@@ -227,7 +227,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
 
             sendAudio =new SendAudio(context,message,rootref,Adduser_to_inbox,
                     senderid,Receiverid,Receiver_name,Receiver_pic,school_id);
-            rootref.child("Users").child(school_id).child(Receiverid).addListenerForSingleValueEvent(new ValueEventListener() {
+            rootref.child("Users").child(Receiverid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists())
@@ -322,7 +322,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
                 if (userScrolled && (scrollOutitems == 0 && mChats.size()>9)) {
                     userScrolled = false;
                     dialog.show("Loading");
-                    rootref.child("chat").child(school_id).child(senderid + "-" + Receiverid).orderByChild("chat_id")
+                    rootref.child("chat").child(senderid + "-" + Receiverid).orderByChild("chat_id")
                             .endAt(mChats.get(0).getChat_id()).limitToLast(20)
                             .addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -519,16 +519,14 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     public void getChat_data() {
         mChats.clear();
         mchatRef_reteriving = FirebaseDatabase.getInstance().getReference();
-        query_getchat = mchatRef_reteriving.child("chat").child(school_id).child(senderid + "-" + Receiverid);
+        query_getchat = mchatRef_reteriving.child("chat").child(senderid + "-" + Receiverid);
         Log.d("dwdwdd",senderid + "-" + Receiverid);
 
         my_block_status_query =mchatRef_reteriving.child("Inbox")
-                .child(school_id)
                 .child(map.get(ID))
                 .child(Receiverid);
 
         other_block_status_query=mchatRef_reteriving.child("Inbox")
-                .child(school_id)
                 .child(Receiverid)
                 .child(map.get(ID));
 
@@ -673,10 +671,10 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     public void SendMessage(final String message) {
         Date c = Calendar.getInstance().getTime();
         final String formattedDate = GetData.df.format(c);
-        final String current_user_ref = "chat" +"/"+school_id+ "/" + senderid + "-" + Receiverid;
-        final String chat_user_ref = "chat"  +"/"+school_id+ "/" + Receiverid + "-" + senderid;
+        final String current_user_ref = "chat" + "/" + senderid + "-" + Receiverid;
+        final String chat_user_ref = "chat"  + "/" + Receiverid + "-" + senderid;
 
-        DatabaseReference reference = rootref.child("chat").child(school_id).child(senderid + "-" + Receiverid).push();
+        DatabaseReference reference = rootref.child("chat").child(senderid + "-" + Receiverid).push();
         final String pushid = reference.getKey();
 
         final HashMap message_user_map = new HashMap<>();
@@ -700,8 +698,8 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 //if first message then set the visibility of whoops layout gone
-                String inbox_sender_ref = "Inbox" +"/"+school_id+ "/" + senderid + "/" + Receiverid;
-                String inbox_receiver_ref = "Inbox" +"/"+school_id+ "/" + Receiverid + "/" + senderid;
+                String inbox_sender_ref = "Inbox" + "/" + senderid + "/" + Receiverid;
+                String inbox_receiver_ref = "Inbox"+ "/" + Receiverid + "/" + senderid;
 
                 HashMap sendermap=new HashMap<>();
                 sendermap.put("rid",senderid);
@@ -747,8 +745,8 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     public void SendSeeeMessage() {
         Date c = Calendar.getInstance().getTime();
         final String formattedDate = GetData.df.format(c);
-        final String current_user_ref = "Seen" +"/"+school_id+ "/"+Receiverid;
-        DatabaseReference reference = rootref.child("Seen").child(school_id).child(Receiverid).push();
+        final String current_user_ref = "Seen" + "/"+Receiverid;
+        DatabaseReference reference = rootref.child("Seen").child(Receiverid).push();
         final String pushid = reference.getKey();
 
         final HashMap message_user_map = new HashMap<>();
@@ -773,11 +771,11 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
         final String formattedDate = GetData.df.format(c);
 
         StorageReference reference= FirebaseStorage.getInstance().getReference();
-        DatabaseReference dref=rootref.child("chat").child(school_id).child(senderid+"-"+Receiverid).push();
+        DatabaseReference dref=rootref.child("chat").child(senderid+"-"+Receiverid).push();
         final String key=dref.getKey();
         uploading_image_id=key;
-        final String current_user_ref = "chat" + "/" +school_id+ "/" + senderid + "-" + Receiverid;
-        final String chat_user_ref = "chat" + "/" +school_id+ "/" + Receiverid + "-" + senderid;
+        final String current_user_ref = "chat" +  "/" + senderid + "-" + Receiverid;
+        final String chat_user_ref = "chat" + "/"  + Receiverid + "-" + senderid;
 
         HashMap my_dummi_pic_map = new HashMap<>();
         my_dummi_pic_map.put("receiver_id", Receiverid);
@@ -795,7 +793,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
         dummy_push.put(current_user_ref + "/" + key, my_dummi_pic_map);
         rootref.updateChildren(dummy_push);
 
-        final StorageReference imagepath= reference.child("images").child(school_id).child(key+".jpg");
+        final StorageReference imagepath= reference.child("images").child(key+".jpg");
         imagepath.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -825,8 +823,8 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
                         rootref.updateChildren(user_map, new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                String inbox_sender_ref = "Inbox" +  "/" +school_id+ "/" + senderid + "/" + Receiverid;
-                                String inbox_receiver_ref = "Inbox" + "/" +school_id +"/" + Receiverid + "/" + senderid;
+                                String inbox_sender_ref = "Inbox" +   "/" + senderid + "/" + Receiverid;
+                                String inbox_receiver_ref = "Inbox" +"/" + Receiverid + "/" + senderid;
 
                                 HashMap sendermap=new HashMap<>();
                                 sendermap.put("rid",senderid);
@@ -875,76 +873,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     }
 
 
-    // this method will upload the image in chhat
-    public void SendGif(String url){
-        Date c = Calendar.getInstance().getTime();
-        final String formattedDate = GetData.df.format(c);
 
-
-        DatabaseReference dref=rootref.child("chat").child(school_id).child(senderid+"-"+Receiverid).push();
-        final String key=dref.getKey();
-
-        String current_user_ref = "chat" + "/" + senderid + "-" + Receiverid;
-        String chat_user_ref = "chat" + "/" + Receiverid + "-" + senderid;
-
-        HashMap message_user_map = new HashMap<>();
-        message_user_map.put("receiver_id", Receiverid);
-        message_user_map.put("sender_id", senderid);
-        message_user_map.put("chat_id",key);
-        message_user_map.put("text", "");
-        message_user_map.put("type","gif");
-        message_user_map.put("pic_url",url);
-        message_user_map.put("status", "0");
-        message_user_map.put("time", "");
-        message_user_map.put("sender_name",map.get(NAME));
-        message_user_map.put("timestamp", formattedDate);
-        HashMap user_map = new HashMap<>();
-
-        user_map.put(current_user_ref + "/" + key, message_user_map);
-        user_map.put(chat_user_ref + "/" + key, message_user_map);
-
-        rootref.updateChildren(user_map, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                String inbox_sender_ref = "Inbox"+ "/" +school_id+ "/" + senderid + "/" + Receiverid;
-                String inbox_receiver_ref = "Inbox" + "/" +school_id+ "/" + Receiverid + "/" + senderid;
-
-
-                HashMap sendermap=new HashMap<>();
-                sendermap.put("rid",senderid);
-                sendermap.put("name",map.get(NAME));
-                sendermap.put("pic",map.get(IMAGE));
-                sendermap.put("msg","Send an gif image...");
-                sendermap.put("status","0");
-                sendermap.put("timestamp", -1* System.currentTimeMillis());
-                sendermap.put("date",formattedDate);
-
-                HashMap receivermap=new HashMap<>();
-                receivermap.put("rid",Receiverid);
-                receivermap.put("name",Receiver_name);
-                receivermap.put("pic",Receiver_pic);
-                receivermap.put("msg","Send an gif image...");
-                receivermap.put("status","1");
-                receivermap.put("timestamp", -1* System.currentTimeMillis());
-                receivermap.put("date",formattedDate);
-
-                HashMap both_user_map = new HashMap<>();
-                both_user_map.put(inbox_sender_ref , receivermap);
-                both_user_map.put(inbox_receiver_ref , sendermap);
-
-                Adduser_to_inbox.updateChildren(both_user_map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        GroupChat_Fragmnet.SendPushNotification(
-                                token,token_reciever);
-
-                    }
-                });
-
-            }
-        });
-    }
 
 
 
@@ -955,11 +884,11 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     public void ChangeStatus(){
         final Date c = Calendar.getInstance().getTime();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        final Query query1 = reference.child("chat").child(school_id).child(Receiverid+"-"+senderid).orderByChild("status").equalTo("0");
-        final Query query2 = reference.child("chat").child(school_id).child(senderid+"-"+Receiverid).orderByChild("status").equalTo("0");
-        final Query seen = reference.child("Seen").child(school_id).child(senderid).orderByChild("status").equalTo("0");
-        final DatabaseReference inbox_change_status_1=reference.child("Inbox").child(school_id).child(senderid+"/"+Receiverid);
-        final DatabaseReference inbox_change_status_2=reference.child("Inbox").child(school_id).child(Receiverid+"/"+senderid);
+        final Query query1 = reference.child("chat").child(Receiverid+"-"+senderid).orderByChild("status").equalTo("0");
+        final Query query2 = reference.child("chat").child(senderid+"-"+Receiverid).orderByChild("status").equalTo("0");
+        final Query seen = reference.child("Seen").child(senderid).orderByChild("status").equalTo("0");
+        final DatabaseReference inbox_change_status_1=reference.child("Inbox").child(senderid+"/"+Receiverid);
+        final DatabaseReference inbox_change_status_2=reference.child("Inbox").child(Receiverid+"/"+senderid);
 
         query1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -967,7 +896,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
                 for (DataSnapshot nodeDataSnapshot : dataSnapshot.getChildren()) {
                     if(!nodeDataSnapshot.child("sender_id").getValue().equals(senderid)){
                         String key = nodeDataSnapshot.getKey(); // this key is `K1NRz9l5PU_0CFDtgXz`
-                        String path = "chat" + "/" +school_id+"/"+ dataSnapshot.getKey() + "/" + key;
+                        String path = "chat" + "/"+ dataSnapshot.getKey() + "/" + key;
                         HashMap<String, Object> result = new HashMap<>();
                         result.put("status", "1");
                         result.put("time",GetData.df2.format(c));
@@ -988,7 +917,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
                 for (DataSnapshot nodeDataSnapshot : dataSnapshot.getChildren()) {
                     if(!nodeDataSnapshot.child("sender_id").getValue().equals(senderid)){
                         String key = nodeDataSnapshot.getKey(); // this key is `K1NRz9l5PU_0CFDtgXz`
-                        String path = "chat" +"/"+school_id+ "/" + dataSnapshot.getKey() + "/" + key;
+                        String path = "chat" + "/" + dataSnapshot.getKey() + "/" + key;
                         HashMap<String, Object> result = new HashMap<>();
                         result.put("status", "1");
                         result.put("time",GetData.df2.format(c));
@@ -1008,7 +937,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot nodeDataSnapshot : dataSnapshot.getChildren()) {
                     String key = nodeDataSnapshot.getKey(); // this key is `K1NRz9l5PU_0CFDtgXz`
-                    String path = "Seen" +"/"+school_id+ "/" + dataSnapshot.getKey() + "/" + key;
+                    String path = "Seen" + "/" + dataSnapshot.getKey() + "/" + key;
                     HashMap<String, Object> result = new HashMap<>();
                     result.put("status", "1");
                     reference.child(path).updateChildren(result);
@@ -1073,7 +1002,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     public void GetUnseen(){
 
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        final Query query1 = reference.child("chat").child(school_id).child(senderid+"-"+Receiverid).orderByChild("status").equalTo("0");
+        final Query query1 = reference.child("chat").child(senderid+"-"+Receiverid).orderByChild("status").equalTo("0");
         query1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1114,7 +1043,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     }
     private void updateSeen(String reverid, String count)
     {
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Seen").child(school_id).child(reverid);
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Seen").child(reverid);
         HashMap<String, String> hashMap=new HashMap<>();
         hashMap.put("count",count);
         reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -1233,8 +1162,8 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
 
     // we will update the privious message means we will tells the other user that we have seen your message
     public void update_message(Chat_GetSet item){
-        final String current_user_ref = "chat" +"/"+school_id+ "/" + senderid + "-" + Receiverid;
-        final String chat_user_ref = "chat" +"/"+school_id+ "/" + Receiverid + "-" + senderid;
+        final String current_user_ref = "chat" + "/" + senderid + "-" + Receiverid;
+        final String chat_user_ref = "chat" + "/" + Receiverid + "-" + senderid;
 
 
         final HashMap message_user_map = new HashMap<>();
@@ -1317,7 +1246,6 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
 
     public void Block_user(){
         rootref.child("Inbox")
-                .child(school_id)
                 .child(Receiverid)
                 .child(map.get(ID)).child("block").setValue("1");
         Toast.makeText(context, "User Blocked", Toast.LENGTH_SHORT).show();
@@ -1326,7 +1254,6 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
 
     public void UnBlock_user(){
         rootref.child("Inbox")
-                .child(school_id)
                 .child(Receiverid)
                 .child(map.get(ID)).child("block").setValue("0");
         Toast.makeText(context, "User UnBlocked", Toast.LENGTH_SHORT).show();
@@ -1683,7 +1610,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
             message_user_map.put("receiver_id", Receiverid);
             message_user_map.put("sender_id", senderid);
 
-            send_typing_indication= FirebaseDatabase.getInstance().getReference().child("typing_indicator").child(school_id);
+            send_typing_indication= FirebaseDatabase.getInstance().getReference().child("typing_indicator");
             send_typing_indication.child(senderid+"-"+Receiverid).setValue(message_user_map).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -1698,7 +1625,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
         }
 
         else {
-            send_typing_indication= FirebaseDatabase.getInstance().getReference().child("typing_indicator").child(school_id);
+            send_typing_indication= FirebaseDatabase.getInstance().getReference().child("typing_indicator");
 
             send_typing_indication.child(senderid+"-"+Receiverid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -1725,7 +1652,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     public void ReceivetypeIndication(){
         mainlayout=view.findViewById(R.id.typeindicator);
 
-        receive_typing_indication= FirebaseDatabase.getInstance().getReference().child("typing_indicator").child(school_id);
+        receive_typing_indication= FirebaseDatabase.getInstance().getReference().child("typing_indicator");
         receive_typing_indication.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
