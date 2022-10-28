@@ -1,29 +1,28 @@
 package com.stenobano.admin.chat.notification_model;
 
 public class DataModel {
+    private String title;
+    private String body;
 
-    private String name;
-    private String age;
-
-    public DataModel(String name, String age) {
-        this.name = name;
-        this.age = age;
+    public DataModel(String title, String body) {
+        this.title = title;
+        this.body = body;
     }
 
-    public String getName() {
-        return name;
+    public String getBody() {
+        return body;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public String getAge() {
-        return age;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

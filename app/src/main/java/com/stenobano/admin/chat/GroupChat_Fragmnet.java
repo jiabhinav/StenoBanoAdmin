@@ -1775,7 +1775,7 @@ public class GroupChat_Fragmnet extends Fragment implements View.OnClickListener
     // then our firebase cloud function will listen node and send the notification to spacific user
     public static void SendPushNotification(String  messg,String recievertoen)
     {
-        RootModel rootModel = new RootModel(recievertoen, new NotificationModel("Chat Message", messg), new DataModel("Name", "30"));
+        RootModel rootModel = new RootModel(recievertoen, new DataModel("Chat Message", messg));
         Log.d("dffefe","Data us: "+new Gson().toJson(rootModel)+"="+recievertoen);
         APIInterface apiService =  NotificationApiClient.getClient().create(APIInterface.class);
         retrofit2.Call<JsonObject> responseBodyCall = apiService.sendNotification(rootModel);

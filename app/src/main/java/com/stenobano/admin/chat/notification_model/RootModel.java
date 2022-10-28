@@ -18,6 +18,10 @@ public class RootModel {
         this.notification = notification;
         this.data = data;
     }
+    public RootModel(String token, DataModel data) {
+        this.token = token;
+        this.data = data;
+    }
 
     public String getToken() {
         return token;
