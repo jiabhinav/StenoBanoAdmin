@@ -92,7 +92,6 @@ public class PurchaseAmountFragment extends Fragment implements View.OnClickList
 
         context= getActivity();
         processingDialog=new ProcessingDialog(context);
-        GetPlan();
 
         binding.plan.setOnClickListener(this);
         binding.save.setOnClickListener(this);
@@ -205,7 +204,7 @@ public class PurchaseAmountFragment extends Fragment implements View.OnClickList
                         processingDialog.dismiss();
                         Log.d("type122sdddd", "msg" + new Gson().toJson(response.body()));
                         Toast.makeText(getContext(), ""+response.body(), Toast.LENGTH_SHORT).show();
-                        GetPlan();
+
                     }
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
@@ -218,47 +217,6 @@ public class PurchaseAmountFragment extends Fragment implements View.OnClickList
 
     }
 
-    private void GetPlan() {
-        processingDialog.show("wait...");
-            // RequestBody.create(MultipartBody.FORM, "stenobano");
-            //Map<String, RequestBody> partMap;
-            Map<String,String> map=new HashMap();
-            map.put("key","wodwhouwoifwnhfwoff");
-            Call<List<PurchasePlanModel>> call = APIClient.getInstance().getPurchasePlan(map);
-            call.enqueue(new Callback<List<PurchasePlanModel>>() {
-                @Override
-                public void onResponse(Call<List<PurchasePlanModel>> call, retrofit2.Response<List<PurchasePlanModel>> response) {
-                    processingDialog.dismiss();
-                    Log.d("plan", "msg" + new Gson().toJson(response.body()));
-                    try {
-                        purchasePlanModel.addAll(response.body()) ;
-                        LayoutInflater layoutInfralte=(LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        binding.linear.removeAllViews();
-                        Log.v(TAG, "LOGS" + purchasePlanModel.size());
-                        for (int i = 0; i < purchasePlanModel.size(); i++) {
-                            View view=layoutInfralte.inflate(R.layout.addplanview, null);
-                            ll=view.findViewById(R.id.ll);
-                            text_plan=view.findViewById(R.id.text_plan);
-                            text_valid=view.findViewById(R.id.text_days);
-                            text_amount=view.findViewById(R.id.text_amount);
-                            text_plan.setText(purchasePlanModel.get(i).getPlan());
-                            text_valid.setText(purchasePlanModel.get(i).getValid()+" "+"Days");
-                            text_amount.setText("Rs "+purchasePlanModel.get(i).getAmount());
-                            binding.linear.addView(view);
-                        }
 
-                    } catch (Exception e) {
-                        Log.d("onResponse", "There is an error");
-                        e.printStackTrace();
-                    }
-                }
-                @Override
-                public void onFailure(Call<List<PurchasePlanModel>> call, Throwable t) {
-                    Log.d("erere",t.toString());
-                    processingDialog.dismiss();
-
-                }
-            });
-        }
 
     }

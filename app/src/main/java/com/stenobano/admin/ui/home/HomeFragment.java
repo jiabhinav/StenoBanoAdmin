@@ -48,7 +48,7 @@ import static com.stenobano.admin.session.SesssionManager.MOBILE;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
-    private static ProcessingDialog processingDialog;
+    private  ProcessingDialog processingDialog;
     DashboradAdapter dashboradAdapter;
     private Context context = getActivity();
     List<DashBoardModel> modellist;
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
-        processingDialog = new ProcessingDialog(context);
+        processingDialog = new ProcessingDialog(requireActivity());
         // mobile=new SesssionManager(getActivity()).userMobile();
         modellist = new ArrayList<>();
         getDashBoardList();

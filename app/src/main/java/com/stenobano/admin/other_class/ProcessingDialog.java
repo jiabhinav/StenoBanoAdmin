@@ -11,20 +11,26 @@ import dmax.dialog.SpotsDialog;
 public class ProcessingDialog
 {
     Context context;
-    String mesg;
-    static AlertDialog progressDialog;
+    static SpotsDialog progressDialog;
 
     public ProcessingDialog(Context context)
     {
         this.context=context;
-        this.mesg="";
     }
 
 
     public void show(String mesg)
     {
-        progressDialog=new SpotsDialog(context, R.style.CustomDialog);
-        progressDialog.setMessage(mesg);
+        progressDialog=new SpotsDialog(context,mesg, R.style.CustomDialog);
+       /* if (mesg!=null)
+        {
+            progressDialog.setMessage(mesg);
+        }
+        else
+        {
+            progressDialog.setMessage("Loading");
+        }*/
+
         progressDialog.show();
     }
 

@@ -46,10 +46,11 @@
             android:id="@+id/news_details"
             android:icon="@drawable/ic_baseline_assignment_24"
             android:title="News"/>
+
         <item
-            android:id="@+id/purchae_amount"
+            android:id="@+id/nav_subscriptionplan"
             android:icon="@drawable/ic_baseline_monetization"
-            android:title="Purchase Amount"/>
+            android:title="Subscription Plan"/>
         <item
             android:id="@+id/send_notification"
             android:icon="@drawable/ic_baseline_notification"

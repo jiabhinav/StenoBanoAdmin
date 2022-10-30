@@ -14,7 +14,7 @@
         android:visibility="gone"
         android:id="@+id/datetxt"/>
 
-    <abhi.example.hp.stenobano.other_class.RoundRectCornerImageView
+    <com.stenobano.admin.other_class.RoundRectCornerImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/chatimage"

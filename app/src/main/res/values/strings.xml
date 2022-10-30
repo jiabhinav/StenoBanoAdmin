@@ -20,7 +20,7 @@
     <string name="_2">2</string>
     <string name="dd">/</string>
     <string name="_0">0</string>
-    <string name="check_String">Checkable</string>
+    <string name="check_String">Clickable</string>
 
     <string-array name="plan">
         <item>Yearly</item>

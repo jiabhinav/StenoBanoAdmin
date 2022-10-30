@@ -91,6 +91,13 @@
         android:name="com.stenobano.admin.ui.PurchaseAmountFragment"
         android:label="Purchase Amount"
         tools:layout="@layout/fragment_purchase_amount" />
+
+    <fragment
+        android:id="@+id/nav_subscriptionplan"
+        android:name="com.stenobano.admin.fragment.SubscroptionPlan"
+        android:label="Subscription Plan"
+        tools:layout="@layout/fragment_subscroption_plan" />
+
     <fragment
         android:id="@+id/send_notification"
         android:name="com.stenobano.admin.ui.SendNotificationFragment"

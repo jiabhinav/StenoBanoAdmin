@@ -12,10 +12,10 @@ import com.stenobano.admin.model.HomeModelCategory;
 import com.stenobano.admin.model.ModelAds;
 import com.stenobano.admin.model.ModelCategory;
 import com.stenobano.admin.model.ModelCategoryDetail;
-import com.stenobano.admin.model.PurchasePlanModel;
-import com.stenobano.admin.model.SearchModel;
+
+import com.stenobano.admin.model.ModelSubscription;
 import com.stenobano.admin.model.SearchWord;
-import com.stenobano.admin.model.Search_Model;
+
 import com.stenobano.admin.model.SerchUserListModel;
 import com.stenobano.admin.model.UpdateNews;
 import com.stenobano.admin.model.UserDetailsModel;
@@ -40,7 +40,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 
 public interface APIInterface {
-
 
     /*
     @Multipart
@@ -388,7 +387,7 @@ public interface APIInterface {
 
     @FormUrlEncoded
     @POST("getPurchasePlan.php")
-    Call<List<PurchasePlanModel>>getPurchasePlan(@FieldMap Map<String, String> params);
+    Call<ModelSubscription>getPurchasePlan(@FieldMap Map<String, String> params);
 
 
     @FormUrlEncoded

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_80sdp"
+    android:elevation="@dimen/_10sdp"
+    android:layout_margin="@dimen/_20sdp"
+    android:id="@+id/rl"
+    android:background="@drawable/round_payment_border">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_2sdp"
+        android:textSize="@dimen/_8sdp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:id="@+id/valid_offer"
+         android:layout_alignParentEnd="true"
+        android:background="@drawable/round_cornor_button"
+        android:backgroundTint="@color/blue_00ade6"
+        android:text="TIME LIMITED OFFER">
+    </TextView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_2sdp"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textStyle="bold"
+            android:textColor="@color/darkgray"
+            android:id="@+id/desc"
+            android:text="1 Year Plan for rs 699 /year">
+        </TextView>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:id="@+id/disc_price"
+                android:textColor="@color/red"
+                android:text="Rs 123">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/disc_price"
+                android:id="@+id/disc_desc"
+                android:textColor="@color/gray"
+                android:text="rs 599 every 1 year">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/_2sdp"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:layout_below="@+id/disc_desc"
+                android:id="@+id/dis_perc"
+                android:textColor="@color/blue_00ade6"
+                android:text="DISCOUNT 25%">
+            </TextView>
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

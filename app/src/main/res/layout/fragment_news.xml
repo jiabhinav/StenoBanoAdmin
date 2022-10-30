@@ -41,7 +41,7 @@
             android:textColor="#8F8E8E"
             android:buttonTint="#1A99C4"
             android:checked="false"
-            android:text=" @string/check_String" />
+            android:text="@string/check_String" />
         <LinearLayout
             android:visibility="gone"
             android:id="@+id/layout_Url"

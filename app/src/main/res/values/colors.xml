@@ -49,4 +49,6 @@
     <color name="transparent">#04fefeff</color>
     <color name="green_dark">#027207</color>
     <color name="orange">#ff9900</color>
+
+    <color name="blue_00ade6">#00ade6</color>
 </resources>
