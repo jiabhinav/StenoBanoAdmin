@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
+import com.stenobano.admin.R
 import com.stenobano.admin.adapter.SubscriptionAdapter
 import com.stenobano.admin.databinding.FragmentSubscroptionPlanBinding
 import com.stenobano.admin.model.ModelSubscription
@@ -41,6 +43,19 @@ class SubscroptionPlan : Fragment() {
         processingDialog = ProcessingDialog(requireContext())
         adapter = SubscriptionAdapter(requireActivity(),list)
         binding.recyclerlist.setAdapter(adapter)
+        adapter.setOnClickListener(object :SubscriptionAdapter.OnClickItem{
+            override fun clickItem(model: ModelSubscription.Result) {
+                val bundle=Bundle()
+                bundle.putParcelable("list",model)
+                findNavController().navigate(R.id.purchae_amount,bundle)
+            }
+
+            override fun selected(model: ModelSubscription.Result) {
+
+            }
+
+        })
+
 
         GetPlan()
 

@@ -1,222 +1,198 @@
-package com.stenobano.admin.ui;
+package com.stenobano.admin.ui
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
+import com.stenobano.admin.other_class.ProcessingDialog
+import com.stenobano.admin.model.ModelSubscription
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.stenobano.admin.R
+import android.text.TextWatcher
+import android.text.Editable
+import android.util.Log
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import com.stenobano.admin.ui.home.HomeFragment
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.stenobano.admin.retrofit.APIClient
+import com.google.gson.Gson
+import com.stenobano.admin.databinding.FragmentPurchaseAmountBinding
+import com.stenobano.admin.session.SesssionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.*
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.stenobano.admin.R;
-import com.stenobano.admin.adapter.User_List_Recycler;
-import com.stenobano.admin.databinding.AddplanviewBinding;
-import com.stenobano.admin.databinding.AlertPlanBinding;
-import com.stenobano.admin.databinding.FragmentPurchaseAmountBinding;
-import com.stenobano.admin.model.PurchasePlanModel;
-import com.stenobano.admin.model.SearchModel;
-import com.stenobano.admin.model.UserDetailsModel;
-import com.stenobano.admin.other_class.ProcessingDialog;
-import com.stenobano.admin.retrofit.APIClient;
-import com.stenobano.admin.session.SesssionManager;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-
-import static android.content.ContentValues.TAG;
-import static com.stenobano.admin.ui.home.HomeFragment.Pin;
-
-public class PurchaseAmountFragment extends Fragment implements View.OnClickListener{
-    FragmentPurchaseAmountBinding binding;
-    private ListView listView;
-    private LinearLayout ll;
-    TextView  text_plan,text_valid,text_amount;
-    private ProcessingDialog processingDialog;
-    ArrayList<PurchasePlanModel> purchasePlanModel = new ArrayList<PurchasePlanModel>();
-    private Context context= getActivity();
-    SesssionManager sesssionManager;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-            sesssionManager = new SesssionManager(getActivity());
-            try {
-                if (sesssionManager.userID().equals("")) {
-
-                } else {
-                    displayDialogWindow();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }
-        }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_purchase_amount, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Update Purchase Amount");
-        return binding.getRoot();
+class PurchaseAmountFragment : Fragment(), View.OnClickListener {
+    lateinit var binding: FragmentPurchaseAmountBinding
+    private val ll: LinearLayout? = null
+    private var processingDialog: ProcessingDialog? = null
+    var model = ModelSubscription.Result()
+    var sesssionManager: SesssionManager? = null
+    var status=""
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sesssionManager = SesssionManager(requireContext())
+        model= requireArguments().getParcelable("list")!!
+        Log.d("TAG", "onCreate44432: "+Gson().toJson(model))
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        context= getActivity();
-        processingDialog=new ProcessingDialog(context);
-
-        binding.plan.setOnClickListener(this);
-        binding.save.setOnClickListener(this);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
-    public void displayDialogWindow() {
-        final AlertDialog.Builder loginDialog = new AlertDialog.Builder(getActivity());
-        loginDialog.setCancelable(false);
-        // loginDialog.setCanceledOnTouchOutside(false);
-//        final AlertDialog.Builder loginDialog = new
-//                AlertDialog.Builder(new ContextThemeWrapper(context, android.R.style.Theme_DeviceDefault_Light_Dialog));
-        LayoutInflater factory = LayoutInflater.from(getActivity());
-        final View f = factory.inflate(R.layout.custompindialog, null);
-        loginDialog.setView(f);
-        TextView Back = (TextView) f.findViewById(R.id.button_Back);
-        final AlertDialog dialog=loginDialog.create();
-        final EditText pin = (EditText) f.findViewById(R.id.pin);
-
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
-        pin.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String st = s.toString();
-                if (Pin.equalsIgnoreCase(st)) {
-                    dialog.dismiss();
-                }
-
-            }
-        });
-        loginDialog.setCancelable(false);
-        dialog.show();
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentPurchaseAmountBinding.inflate(inflater, container, false)
+        init()
+        return binding.root
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId()==R.id.plan)
-        {
-            alertPlan();
-        }
-        else   if (v.getId()==R.id.save)
-        {
-            UpdatePlan();
-        }
-    }
 
-    private  void alertPlan()
+    fun init()
     {
-        final androidx.appcompat.app.AlertDialog.Builder dialogBuilder = new androidx.appcompat.app.AlertDialog.Builder(getContext());
-        dialogBuilder.create();
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.alert_plan, null);
-        listView =dialogView.findViewById(R.id.listView);
-        final TextView select=dialogView.findViewById(R.id.select);
-        select.setText("Select Plan");
-        final androidx.appcompat.app.AlertDialog dialog=dialogBuilder.create();
-        dialog.setView(dialogView);
-        String[] some_array = getResources().getStringArray(R.array.plan);
-        final ArrayAdapter adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,some_array);
-        listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               binding.plan.setText(String.valueOf(adapter.getItem(position)));
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
-    private  void UpdatePlan() {
-        if (binding.plan.getText().toString().equals("Select Plan")) {
-            Toast.makeText(getContext(), "Choose plan first", Toast.LENGTH_SHORT).show();
+        processingDialog = ProcessingDialog(requireContext())
+        binding.save.setOnClickListener(this)
 
-        } else if (binding.valid.getText().toString().equals("")) {
-            Toast.makeText(getContext(), "Enter days", Toast.LENGTH_SHORT).show();
+        binding.plan.setText(model.plan)
+        binding.offervaliddesc.setText(model.offerValidMesg)
+        binding.offervaliddesc.setText(model.offerValidMesg)
+        binding.plandesc.setText(model.des)
+        binding.valid.setText(model.valid)
+        val plan=model.amount.toInt()+model.disPrice.toInt()
+        binding.amount.setText(plan.toString())
+        binding.discountamount.setText(model.disPrice)
+        binding.finalprice.setText(model.amount)
 
-        } else if (binding.amount.getText().toString().equals("")){
-            Toast.makeText(getContext(), "Enter Amount", Toast.LENGTH_SHORT).show();
+        val some_array = resources.getStringArray(R.array.plan_status)
+        val adapter: ArrayAdapter<*> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, some_array)
+        binding.status.setAdapter(adapter)
+        if (model.status.equals("1"))
+        {
+            binding.status.setSelection(0)
         }
-        else {
-                processingDialog.show("wait...");
-                Map<String,String> map=new HashMap();
-            map.put("plan",binding.plan.getText().toString());
-            map.put("valid",binding.valid.getText().toString());
-            map.put("amount",binding.amount.getText().toString());
-                Call<String> call = APIClient.getInstance().UpdatePurchase(map);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, retrofit2.Response<String> response) {
-                        processingDialog.dismiss();
-                        Log.d("type122sdddd", "msg" + new Gson().toJson(response.body()));
-                        Toast.makeText(getContext(), ""+response.body(), Toast.LENGTH_SHORT).show();
+        else
+        {
+            binding.status.setSelection(1)
+        }
 
-                    }
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        Log.d("erere",t.toString());
-                        processingDialog.dismiss();
+        binding.status.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
 
-                    }
-                });
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position==0)
+                status = "1"
+                else
+                 status = "0"
             }
 
+        }
+
+        binding.discountamount.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+
+                if (!binding.discountamount.text.toString().equals(""))
+                {
+                    val amount = binding.discountamount.text.toString().toLowerCase(Locale.getDefault()).toInt()
+                    val planapunt=binding.amount.text.toString().toInt()
+
+                    if (planapunt > amount)
+                    {
+                        val finalprice=planapunt-amount
+                        binding.finalprice.setText(finalprice.toString())
+                    }
+                    else{
+                        Toast.makeText(requireContext(), "Discount amount should be less than subcription plan", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else
+                {
+                    binding.finalprice.setText(binding.amount.text.toString())
+                }
+
+
+
+
+            }
+        })
+
+        binding.amount.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable) {
+               binding.discountamount.setText("")
+
+            }
+        })
+
+
     }
 
 
 
+
+    override fun onClick(v: View) {
+        if (v.id == R.id.save) {
+            UpdatePlan()
+        }
     }
+
+
+
+    private fun UpdatePlan() {
+        if (binding.plan.text.toString() == "Select Plan") {
+            Toast.makeText(getContext(), "Choose plan first", Toast.LENGTH_SHORT).show()
+        } else if (binding.valid.text.toString() == "") {
+            Toast.makeText(getContext(), "Enter days", Toast.LENGTH_SHORT).show()
+        } else if (binding.amount.text.toString() == "") {
+            Toast.makeText(getContext(), "Enter Amount", Toast.LENGTH_SHORT).show()
+        }
+
+        else if (binding.plandesc.text.toString() == "") {
+            Toast.makeText(getContext(), "Enter plan description", Toast.LENGTH_SHORT).show()
+        }
+
+        else {
+
+            val map = HashMap<String, String>()
+            map["id"] = model.id
+            map["valid"] = binding.valid.text.toString()
+            map["amount"] = binding.finalprice.text.toString()
+            if ( binding.discountamount.text.toString().equals(""))
+            {
+                map["discount"] = "0"
+            }
+            else
+            {
+                map["discount"] = binding.discountamount.text.toString()
+            }
+            map["offer_valid_mesg"] = binding.offervaliddesc.text.toString()
+            map["des"] = binding.plandesc.text.toString()
+            map["status"] = status
+
+            processingDialog!!.show("wait...")
+            val call = APIClient.getInstance().UpdatePurchase(map)
+            call.enqueue(object : Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    processingDialog!!.dismiss()
+                    Log.d("type122sdddd", "msg" + Gson().toJson(response.body()))
+
+                    if (response.body().equals("Updated"))
+                    {
+                        findNavController().navigateUp()
+                    }
+                    Toast.makeText(requireContext(), "" + response.body(), Toast.LENGTH_SHORT).show()
+
+                }
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    Log.d("erere", t.toString())
+                    processingDialog!!.dismiss()
+                }
+            })
+        }
+    }
+}

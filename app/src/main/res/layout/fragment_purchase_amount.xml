@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,27 +11,61 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
-
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/textview_border"
-            android:text="Select Plan"
-            android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
-            android:textColorHint="@color/gray"
-            android:id="@+id/plan"
-            android:textSize="16dp"
             android:layout_marginTop="20dp"
-            android:padding="8dp"
-            android:visibility="visible"
-            android:paddingLeft="10dp"
-            android:textColor="#9C9999"
-            android:inputType="numberDecimal"
-            />
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/plan"
+                android:textColor="@color/black"
+                android:backgroundTint="#9C9999"
+                android:inputType="textCapSentences"
+                android:focusable="false"
+                android:textSize="16sp"
+                android:hint="Plan Name"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/offervaliddesc"
+                android:textColor="@color/black"
+                android:backgroundTint="#9C9999"
+                android:inputType="textCapSentences"
+                android:textSize="16sp"
+                android:hint="Offer Valid Description"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/plandesc"
+                android:textColor="@color/black"
+                android:backgroundTint="#9C9999"
+                android:inputType="textCapSentences"
+                android:textSize="16sp"
+                android:hint="Plan Description"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -45,12 +78,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/valid"
-                android:textColor="#9C9999"
+                android:textColor="@color/black"
                 android:backgroundTint="#9C9999"
                 android:inputType="number"
                 android:textSize="16sp"
-                android:hint="Enter days  like 365 days "/>
+                android:maxLength="3"
+                android:hint="Valid Days"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginRight="20dp"
@@ -63,11 +100,83 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/amount"
                 android:textSize="16sp"
-                android:textColor="#9C9999"
+                android:textColor="@color/black"
                 android:backgroundTint="#9C9999"
-                android:inputType="numberDecimal"
-                android:hint=" Purchase Amount"/>
+                android:inputType="number"
+                android:maxLength="3"
+                android:hint="Subcription Plan"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/discountamount"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:backgroundTint="#9C9999"
+                android:inputType="number"
+                android:maxLength="3"
+                android:hint="Discount Amount"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColorHint="#9C9999"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/finalprice"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:focusable="false"
+                android:backgroundTint="#9C9999"
+                android:inputType="number"
+                android:hint="Final Amount"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Select Status"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/spinner_bg"
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                android:spinnerMode="dropdown" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+        </RelativeLayout>
 
         <Button
             android:layout_width="wrap_content"
@@ -81,53 +190,7 @@
             android:id="@+id/save"/>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:text="Plan"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:padding="8dp"
-                android:gravity="center"
-                android:id="@+id/text_plan"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Valid Days"
-                android:gravity="center"
-                android:layout_weight=".5"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:id="@+id/text_days"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight=".5"
-                android:text="Amount"
-                android:padding="8dp"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="16dp"
-                android:id="@+id/text_amount"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/linear">
-
-        </LinearLayout>
-
 
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
-</layout>
