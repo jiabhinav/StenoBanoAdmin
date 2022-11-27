@@ -1,5 +1,7 @@
 package com.stenobano.admin.ui;
 
+import static com.stenobano.admin.session.SesssionManager.ID;
+
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,12 +17,14 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.stenobano.admin.R;
+import com.stenobano.admin.Sessionmanager;
 import com.stenobano.admin.adapter.CategoryAapter;
 import com.stenobano.admin.databinding.FragmentViewCategoryBinding;
 import com.stenobano.admin.model.HomeModelCategory;
 import com.stenobano.admin.model.ModelCategory;
 import com.stenobano.admin.other_class.ProcessingDialog;
 import com.stenobano.admin.retrofit.APIClient;
+import com.stenobano.admin.session.SesssionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +71,7 @@ public class ViewCategory extends Fragment {
     {
         processingDialog.show("wait...");
 
-        RequestBody key = RequestBody.create(MultipartBody.FORM, "stenobano");
+        RequestBody key = RequestBody.create(MultipartBody.FORM, new SesssionManager(requireActivity()).getUserDetails().get(ID));
         Call<HomeModelCategory> call = APIClient.getInstance().homegetCategory(key);
         call.enqueue(new Callback<HomeModelCategory>() {
             @Override

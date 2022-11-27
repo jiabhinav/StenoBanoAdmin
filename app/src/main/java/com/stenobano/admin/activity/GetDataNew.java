@@ -1,5 +1,7 @@
 package com.stenobano.admin.activity;
 
+import static com.stenobano.admin.session.SesssionManager.ID;
+
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,6 +34,7 @@ import com.stenobano.admin.databinding.ActivityGetDataNewBinding;
 import com.stenobano.admin.model.ModelCategoryDetail;
 import com.stenobano.admin.other_class.ProcessingDialog;
 import com.stenobano.admin.retrofit.APIClient;
+import com.stenobano.admin.session.SesssionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -220,8 +223,9 @@ public class GetDataNew extends AppCompatActivity {
     {
         processingDialog.show("wait...");
 
+        RequestBody id = RequestBody.create(MultipartBody.FORM, new SesssionManager(this).getUserDetails().get(ID));
         RequestBody key = RequestBody.create(MultipartBody.FORM, type_id);
-        Call<ModelCategoryDetail> call = APIClient.getInstance().getDataAudio_Image(key);
+        Call<ModelCategoryDetail> call = APIClient.getInstance().getDataAudio_Image(key,id);
         call.enqueue(new Callback<ModelCategoryDetail>() {
             @Override
             public void onResponse(Call<ModelCategoryDetail> call, retrofit2.Response<ModelCategoryDetail> response) {

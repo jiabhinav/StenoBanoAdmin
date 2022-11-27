@@ -353,7 +353,8 @@ public interface APIInterface {
     @Multipart
     @POST("getDataAudio_Image.php")
     Call<ModelCategoryDetail> getDataAudio_Image(
-            @Part("id") RequestBody id
+            @Part("id") RequestBody id,
+              @Part("user_id") RequestBody user_id
     );
 
     @Multipart
@@ -370,7 +371,7 @@ public interface APIInterface {
 
     @Multipart
     @POST("getCategory.php")
-    Call<HomeModelCategory>homegetCategory(@Part("key") RequestBody key);
+    Call<HomeModelCategory>homegetCategory(@Part("user_id") RequestBody key);
 
     @FormUrlEncoded
     @POST("getUserList.php")

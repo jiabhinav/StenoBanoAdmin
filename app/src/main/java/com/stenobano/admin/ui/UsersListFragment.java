@@ -304,7 +304,6 @@ public class UsersListFragment extends Fragment  implements View.OnClickListener
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Total :" + model.size() + " " + "users");
                 user_list_recycler = new User_List_Recycler(model, getActivity(),UsersListFragment.this);
                 usersListBinding.recyclerUserList.setAdapter(user_list_recycler);
-
                 user_list_recycler.notifyDataSetChanged();
             }
 
