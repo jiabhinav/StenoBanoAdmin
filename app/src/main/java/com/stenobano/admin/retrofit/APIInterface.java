@@ -363,11 +363,9 @@ public interface APIInterface {
             @Part("id") RequestBody id
     );
 
-
-
     @Multipart
     @POST("getCategory.php")
-    Call<ModelCategory> getCategory(@Part("key") RequestBody key);
+    Call<ModelCategory> getCategory(@Part("user_id") RequestBody key);
 
     @Multipart
     @POST("getCategory.php")

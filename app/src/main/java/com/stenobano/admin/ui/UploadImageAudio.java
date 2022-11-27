@@ -39,6 +39,7 @@ import com.stenobano.admin.other_class.FilePath;
 import com.stenobano.admin.other_class.PermissionUtil;
 import com.stenobano.admin.other_class.ProcessingDialog;
 import com.stenobano.admin.retrofit.APIClient;
+import com.stenobano.admin.session.SesssionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +56,7 @@ import retrofit2.Callback;
 
 
 import static android.app.Activity.RESULT_OK;
-
+import static com.stenobano.admin.session.SesssionManager.ID;
 
 
 public class UploadImageAudio extends Fragment implements View.OnClickListener {
@@ -288,8 +289,9 @@ public class UploadImageAudio extends Fragment implements View.OnClickListener {
 
         modelList.clear();
         processingDialog.show("Saving");
-        RequestBody schoolid = RequestBody.create(MultipartBody.FORM, "stenobano");
-        Call<ModelCategory> call = APIClient.getInstance().getCategory(schoolid);
+        RequestBody id = RequestBody.create(MultipartBody.FORM, new SesssionManager(requireActivity()).getUserDetails().get(ID));
+      //  RequestBody schoolid = RequestBody.create(MultipartBody.FORM, id);
+        Call<ModelCategory> call = APIClient.getInstance().getCategory(id);
         call.enqueue(new Callback<ModelCategory>() {
             @Override
             public void onResponse(Call<ModelCategory> call, retrofit2.Response<ModelCategory> response) {
